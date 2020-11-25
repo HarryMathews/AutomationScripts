@@ -1,0 +1,237 @@
+public class FPP {
+	WebDriver d;
+	SoftAssert softassert=new SoftAssert();
+	
+	
+//SOP
+  @Test
+  public void f() {
+	  
+	  	List<String>attribute=new ArrayList<String>();
+		attribute.add("Name");
+		attribute.add("SAP Description");
+		attribute.add("Type");
+		attribute.add("Specification SubType");
+		attribute.add("SAP Type");
+		attribute.add("Substitute/Alternate Grouping");
+		attribute.add("BOM Quantity (BQ)");
+		attribute.add("Base Unit of Measure (BUoM)");
+		attribute.add("Authorized(A) Authorized to Use (AU)");
+		attribute.add("Authorized to Produce (AP) Optional Component (OC)");
+		attribute.add("Transport Unit (TU) Comments(C)");
+		
+
+
+
+		List<String>plist=new ArrayList<String>();
+		WebElement t= d.findElement(By.id("six"));
+		List<WebElement>rows=t.findElements(By.tagName("tr"));
+		List<WebElement>cols=rows.get(1).findElements(By.tagName("th"));
+		for(WebElement col :cols) {
+			String ss =col.getText();
+			plist.add(ss);
+			System.out.println(ss);
+		}
+	
+	
+		for(String s:attribute) {
+			int count=0;
+			for(String w:plist) {
+			//String s1=w.getText();
+				if(s.equalsIgnoreCase(w)) {
+					System.out.println(s+" is present on webpage");
+					softassert.assertEquals(w, s);
+				
+			
+				}
+
+				else {
+					count+=1;
+					if(count>=plist.size()) {
+						System.out.println(s+"Desc not in webpage");
+					}
+					continue;
+				}
+			}
+		}
+		softassert.assertAll();
+		
+	
+  }
+
+//Bill of Materials 
+  @Test
+  public void g() {
+	  
+	  List<String>attribute=new ArrayList<String>();
+			attribute.add("Name(N) Rev(R)");
+			attribute.add("Chg");
+			attribute.add("F/N");
+			attribute.add("Title");
+			attribute.add("Type");
+			attribute.add("Substitute Parts (SP) Alternate (Alt)");
+			attribute.add("Qty");
+			attribute.add("Base Unit of Measure");
+			attribute.add("EBOM Comments");
+			attribute.add("Release Date");
+			attribute.add("Phase (Pha) State(St)");
+			attribute.add("Ref Des(RD) On-Shelf Product Density(OSPD)");
+			attribute.add("Density Unit Of Measure(DUoM) Optional Components(OC)");
+		
+
+
+
+		List<String>plist=new ArrayList<String>();
+//		WebElement t= d.findElement(By.id("eight"));
+		WebElement t= d.findElement(By.xpath("//*[@id=\"eight\"]"));
+		List<WebElement>rows=t.findElements(By.tagName("tr"));
+		
+		int rsize=rows.size();
+		for(int i=0;i<rsize;i++) {
+			List<WebElement>cols=rows.get(i).findElements(By.tagName("th"));
+			for(WebElement c:cols) {
+				String ss=c.getText();
+				plist.add(ss);
+				System.out.println(ss);
+			}
+//		}
+//		List<WebElement>cols=rows.get(1).findElements(By.tagName("th"));
+//		for(WebElement col :cols) {
+//			String ss =col.getText();
+//			plist.add(ss);
+//			System.out.println(ss);
+//		}
+	
+	
+	
+	
+		for(String s:attribute) {
+			int count=0;
+			for(String w:plist) {
+			//String s1=w.getText();
+				if(s.equalsIgnoreCase(w)) {
+				System.out.println(s+" is present on webpage");
+				softassert.assertEquals(w, s);
+				
+			
+			}
+
+			else {
+				count+=1;
+				if(count>=plist.size()) {
+					System.out.println(s+"Desc not in webpage");
+					
+					
+				}
+				
+			continue;
+			}
+			}
+		}
+	
+		}
+		softassert.assertAll();
+		
+  }
+  
+//Bill of Materials Consumer Unit 
+  @Test
+  public void h() {
+	  
+	  	List<String>attribute=new ArrayList<String>();
+		attribute.add("Name(N) Rev(R)");
+		attribute.add("Chg");
+		attribute.add("F/N");
+		attribute.add("Title");
+		attribute.add("Type");
+		attribute.add("Substitute Parts (SP) Alternate (Alt)");
+		attribute.add("Qty");
+		attribute.add("Base Unit of Measure");
+		attribute.add("EBOM Comments");
+		attribute.add("Release Date");
+		attribute.add("Phase (Pha) State(St)");
+		attribute.add("Ref Des(RD) On-Shelf Product Density(OSPD)");
+		attribute.add("Density Unit Of Measure(DUoM) Optional Components(OC)");
+		
+
+
+
+		List<String>plist=new ArrayList<String>();
+//		WebElement t= d.findElement(By.id("fourteen"));
+		WebElement t= d.findElement(By.xpath("//*[@id=\"fourteen\"]"));
+		
+		List<WebElement>rows=t.findElements(By.tagName("tr"));
+		
+		int rsize=rows.size();
+		for(int i=0;i<rsize;i++) {
+			List<WebElement>cols=rows.get(i).findElements(By.tagName("th"));
+			for(WebElement c:cols) {
+				String ss=c.getText();
+				plist.add(ss);
+				System.out.println(ss);
+			}
+		
+//		List<WebElement>rows=t.findElements(By.tagName("tr"));
+//		List<WebElement>cols=rows.get(1).findElements(By.tagName("th"));
+//		for(WebElement col :cols) {
+//			String ss =col.getText();
+//			plist.add(ss);
+//			System.out.println(ss);
+//		}
+	
+		for(String s:attribute) {
+			int count=0;
+			for(String w:plist) {
+			//String s1=w.getText();
+				if(s.equalsIgnoreCase(w)) {
+					System.out.println(s+" is present on webpage");
+				
+			
+				}
+
+				else {
+					count+=1;
+					if(count>=plist.size()) {
+						System.out.println(s+"Desc not in webpage");
+					
+				}
+				
+					continue;
+				}
+			}
+		}
+	
+		}
+		softassert.assertAll();
+		
+  }
+  
+  @BeforeClass
+  public void beforeClass() throws InterruptedException {
+	  System.setProperty("webdriver.chrome.driver", "C:\\Users\\harry\\Documents\\Infy\\Eclipse\\Jars\\Selenium\\selenium_essentials\\chromedriver_win32\\chromedriver.exe");
+		d=new ChromeDriver();
+		d.get("https://specsqaap.pg.com/login");
+			
+		d.manage().timeouts().implicitlyWait(30000, TimeUnit.SECONDS);
+		d.findElement(By.id("username")).sendKeys("Anywheretwo.im");
+		d.manage().timeouts().implicitlyWait(20000, TimeUnit.SECONDS);
+		d.findElement(By.id("password")).sendKeys("Sa061920");
+		d.manage().timeouts().implicitlyWait(50000, TimeUnit.SECONDS);
+		d.findElement(By.id("loginButton")).click();
+		d.manage().timeouts().implicitlyWait(50000, TimeUnit.SECONDS);
+		Thread.sleep(5000);
+
+
+		d.findElement(By.id("searchBox")).sendKeys("FPP");
+		d.manage().timeouts().implicitlyWait(1000, TimeUnit.SECONDS);
+		d.findElement(By.xpath("//*[@id=\"root\"]/div[2]/div[1]/div/div/form/div/div[1]/div/button")).click();
+		Thread.sleep(1000);
+		d.findElement(By.xpath("//*[@id=\"root\"]/div[2]/div[2]/div/div/div[2]/div/div/div/div/table/tbody/tr[3]/td[1]/a/span")).click();
+  }
+
+  @AfterClass
+  public void afterClass() {
+  }
+ 
+
+}
